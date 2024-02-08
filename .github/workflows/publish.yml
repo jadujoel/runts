@@ -15,21 +15,12 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    - name: Configure Git
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-
-    - name: Bump version and publish to npm
+    - name: Publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
-        npm version minor -m "Bump version to %s [skip ci]"
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        npm version minor
         npm publish --access=public
-
-    - name: Commit changes
-      run: |
-        git add package.json package-lock.json
-        git commit -m "Automate version bump and npm publish [skip ci]"
-        git push
+        git push --follow-tags
