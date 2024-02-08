@@ -15,12 +15,17 @@ if (argv.length < 3) {
 // in case it uses process.argv and expects the first argument to be something else
 const [script] = argv.splice(2, 1)
 
+const dir = path.resolve()
+// make sure we dont alter the cwd to be the directory of this bin
+process.cwd = () => dir
+
 const infile = path.resolve(script)
 
 if (!fileExists(infile)) {
   console.error(`File not found: ${infile}`)
   process.exit(1)
 }
+
 
 const target = `node${findLatestCompatibleNodeVersion()}`
 build({
