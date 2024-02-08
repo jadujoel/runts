@@ -1,9 +1,7 @@
 name: Publish npm package
 
 on:
-  push:
-    branches:
-      - release  # Set to your default branch
+  workflow_dispatch:
 
 jobs:
   publish:
