@@ -22,7 +22,7 @@ if (!fileExists(infile)) {
   process.exit(1)
 }
 
-console.log(`runts: ${script}`)
+const target = `node${findLatestCompatibleNodeVersion()}`
 
 build({
   entryPoints: [infile],
@@ -30,6 +30,8 @@ build({
   write: false,
   sourcemap: 'inline',
   metafile: true,
+  platform: 'node',
+  target,
 }).then(result => {
   const outputs = result.outputFiles
   result.errors.forEach(console.error)
@@ -50,6 +52,15 @@ build({
   })
 })
 
+function findLatestCompatibleNodeVersion() {
+  const current = Number(process.version.slice(1, 3))
+  const latest = 20
+  if (current > latest) {
+    return latest
+  } else {
+    return current
+  }
+}
 /**
  * @param {string} text
  * @returns {boolean}
