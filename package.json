@@ -1,6 +1,6 @@
 {
   "name": "@jadujoel/runts",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "When you want to run a typescript file directly like with ts-node, but you wanna go fast. And you cant use bun since it's not exactly the same as node, or you're on windows and bun is not supported yet.",
   "main": "index.mjs",
   "bin": {
