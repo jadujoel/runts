@@ -22,5 +22,5 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         npm version minor
-        npm publish --access=public
         git push --follow-tags
+        npm publish --access=public
