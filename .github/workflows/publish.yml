@@ -23,8 +23,6 @@ jobs:
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
-        git remote set-url origin https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/jadujoel/runts.git
-
         npm version minor
         git push --follow-tags
         npm publish --access=public
