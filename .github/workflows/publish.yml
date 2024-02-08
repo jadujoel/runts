@@ -1,0 +1,31 @@
+name: Publish npm package
+
+on:
+  push:
+    branches:
+      - main  # Set to your default branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+
+    - name: Bump version and publish to npm
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: |
+        npm version minor -m "Bump version to %s [skip ci]"
+        npm publish
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Commit changes
+      run: |
+        git add package.json package-lock.json
+        git commit -m "Automate version bump and npm publish [skip ci]"
+        git push
