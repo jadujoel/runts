@@ -44,7 +44,7 @@ build({
   }
   const text = outputs[0].text
   evalWithStackTrace(text).then(success => {
-    if (!success) {
+    if (!success || result.errors.length !== 0) {
       process.exit(1)
     }
   })
