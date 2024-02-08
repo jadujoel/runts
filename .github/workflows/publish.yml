@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/setup-node@v4
       with:
         registry-url: 'https://registry.npmjs.org'
@@ -21,6 +23,8 @@ jobs:
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
+        git remote set-url origin https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/jadujoel/runts.git
+
         npm version minor
         git push --follow-tags
         npm publish --access=public
