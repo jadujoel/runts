@@ -1,0 +1,19 @@
+{
+  "name": "runts",
+  "version": "1.0.0",
+  "description": "When you want to run a typescript file directly like with ts-node, but you wanna go fast. And you cant use bun since it's not exactly the same as node, or you're on windows and bun is not supported yet.",
+  "main": "index.mjs",
+  "bin": {
+    "runts": "bin.mjs"
+  },
+  "scripts": {
+    "test": "node bin.mjs test.ts"
+  },
+  "keywords": [],
+  "author": "jlof@evolution.com",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "0.20.0",
+    "source-map": "0.7.4"
+  }
+}
