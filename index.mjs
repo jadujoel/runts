@@ -1,6 +1,6 @@
 
 // import the async version of exec
-import { exec } from 'child_process'
+const { exec } = require('child_process')
 
 /**
  * Run a TypeScript script using runts

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { build } from 'esbuild'
-import path from 'path'
-import fs from 'fs'
-import { SourceMapConsumer } from 'source-map';
+const { build } = require('esbuild')
+const path = require('path')
+const fs = require('fs')
+const { SourceMapConsumer } = require('source-map')
 
 const argv = process.argv
 if (argv.length < 3) {
@@ -23,7 +23,6 @@ if (!fileExists(infile)) {
 }
 
 const target = `node${findLatestCompatibleNodeVersion()}`
-
 build({
   entryPoints: [infile],
   bundle: true,
@@ -31,6 +30,9 @@ build({
   sourcemap: 'inline',
   metafile: true,
   platform: 'node',
+  external: [
+    'esbuild', 'source-map', 'fsevents', '@netent-tech/ecas-en'
+  ],
   target,
 }).then(result => {
   const outputs = result.outputFiles
