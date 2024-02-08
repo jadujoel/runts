@@ -36,7 +36,8 @@ build({
   metafile: true,
   platform: 'node',
   external: [
-    'esbuild', 'source-map', 'fsevents', '@netent-tech/ecas-en'
+    'esbuild',
+    'fsevents'  // esbuild sometimes has issues with fsevents
   ],
   target,
 }).then(result => {
